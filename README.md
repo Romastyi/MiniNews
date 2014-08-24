@@ -1,0 +1,4 @@
+MiniNews
+========
+
+Trying Mojolicious
