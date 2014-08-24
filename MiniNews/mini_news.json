@@ -1,0 +1,7 @@
+{
+  "db": {
+    "dsn"      : "dbi:Pg:dbname=rt_news",
+    "user"     : "rt_news",
+    "password" : "rt_news"
+  }
+}

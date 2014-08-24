@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head><title>News by tag "<%= $tag %>"</title></head>
+  <body>
+    <div>List of news with tag "<%= $tag %>":</div>
+    <table border="1">
+      <thead>
+	<tr>
+	  <th>Id</th>
+	  <th>Title</th>
+	  <th>Lead</th>
+	  <th>News</th>
+	  <th>Updated</th>
+	</tr>
+      </thead>
+      <tbody id="table">
+	%= include 'table'
+      </tbody>
+    </table>
+    <a href="<%= url_for('news_index') %>">Back to all</a>
+  </body>
+</html> 

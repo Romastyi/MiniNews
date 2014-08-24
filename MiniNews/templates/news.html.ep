@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head><title>News: "<%= $rec->{"title"} %>"</title></head>
+  <body>
+    <div><h1><%= $rec->{"title"} %></h1></div>
+    <div><h2><%= $rec->{"lead"} %></h2></div>
+    <div><%= $rec->{"updated"} %></div>
+    </br>
+    <div><%= $rec->{"body"} %></div>
+    </br>
+    <div>
+      % my $tags_array = $rec->{"tags"};
+      % foreach my $tag (@$tags_array) {
+	<a href="<%= url_for('news_by_tag', tag => $tag) %>"><%= $tag %></a>
+      % }
+    </div>
+    </br>
+    <a href="<%= url_for('news_index') %>">Back to all</a>
+  </body>
+</html> 

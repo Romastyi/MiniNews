@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head><title>Edit news: "<%= $rec->{"title"} %>"</title>
+    <style>
+      label.field-with-error { color: #dd7e5e }
+      input.field-with-error { background-color: #fd9e7e }
+    </style>
+  </head>
+  <body>
+    <form method="POST" action="<%= url_for('admin_preview') %>">
+      %= label_for title => 'Title*:'
+      <textarea id="title" name="title" rows="2" style="width:100%"><%= $rec->{"title"} %></textarea>
+      %= label_for lead => 'Lead*:'
+      <textarea id="lead" name="lead" rows="5" style="width:100%"><%= $rec->{"lead"} %></textarea>
+      %= label_for body => 'Body*:'
+      <textarea id="body" name="body" rows="10" style="width:100%"><%= $rec->{"body"} %></textarea>
+      % my $tags_array = $rec->{"tags"};
+      %= label_for tags => 'Tags*:'
+      <input id="tags" name="tags" type="text" value="<%= ref($tags_array) eq "ARRAY" ? join(", ", @$tags_array) : $tags_array %>" style="width:100%"/>
+      <input type="checkbox" id="is_ready" name="is_ready" <%= $rec->{"is_ready"} ? "checked" : "" %>/>
+      <label for="is_ready">Ready</label>
+      <div>Last updated at: <%= $rec->{"updated"} %></div>
+      <input type="hidden" name="updated" value="<%= $rec->{"updated"} %>"/></br>
+      <input type="submit" value="Preview"/>
+    </form>
+    <hr/>
+    <a href="<%= url_for('admin_index') %>">Back to all</a>
+  </body>
+</html>
+ 

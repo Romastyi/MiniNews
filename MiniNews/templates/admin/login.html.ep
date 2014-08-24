@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha1.js"></script>
+  <script>
+    function doOnSubmit(form) {
+        var password = form["pass"];
+        password.value = CryptoJS.SHA1(password.value);
+        return true;
+    }
+  </script>
+</head>
+<body>
+  <h1>Login Form</h1>
+  <form method="POST" action="<%= url_for('auth_login') %>" onsubmit="return doOnSubmit(this);">
+    <div>
+      <lable for="login">Login:</label>
+      <input type="text" id="login" name="login" value=""/>
+    </div>
+    <div>
+      <label for="pass">Password:</label>
+      <input type="password" id="pass" name="pass" value=""/>
+    </div>
+    <div>
+      <input type="submit" value="Login"/>
+    </div>
+  </form>
+</body>
+</html>
+ 

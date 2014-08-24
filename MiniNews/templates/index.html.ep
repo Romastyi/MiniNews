@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head><title>All news</title></head>
+  <body>
+    <div>Here is list on all news:</div>
+    <table border="1">
+      <thead>
+	<tr>
+	  <th>Id</th>
+	  <th>Title</th>
+	  <th>Lead</th>
+	  <th>News</th>
+	  <th>Updated</th>
+	  <th>Tags</th>
+	</tr>
+      </thead>
+      <tbody id="table">
+	%= include 'table'
+      </tbody>
+    </table>
+    <a href="<%= url_for('admin_index') %>">Admin</a>
+  </body>
+</html>
+ 

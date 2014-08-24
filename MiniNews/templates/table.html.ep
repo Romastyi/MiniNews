@@ -1,0 +1,17 @@
+% foreach my $row (@$rows) {
+  <tr>
+    <td><a href="<%= url_for('news_by_id', id => $row->{"id"}) %>"><%= $row->{"id"} %></a></td>
+    <td><%= $row->{"title"} %></td>
+    <td><%= $row->{"lead"} %></td>
+    <td><%= $row->{"body"} %></td>
+    <td><%= $row->{"updated"} %></td>
+    % if ($row->{"tags"}) {
+    <td>
+      % my $tags_array = $row->{"tags"};
+      % foreach my $atag (@$tags_array) {
+	<a href="<%= url_for('news_by_tag', tag => $atag) %>"><%= $atag %></a>
+      % }
+    </td>
+    % }
+  </tr>
+% } 

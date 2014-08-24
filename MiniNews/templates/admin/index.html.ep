@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head><title>All news</title></head>
+  <script>
+    function execute($method, $url) {
+      xmlhttp=new XMLHttpRequest();
+      xmlhttp.open($method, $url)
+      xmlhttp.send(null);
+    }
+  </script>
+  <body>
+    <div>Here is list on all news:</div>
+    <a href="<%= url_for('admin_edit', id => -1) %>">Create new</a>
+    <table border="1">
+      <thead>
+	<tr>
+	  <th>Id</th>
+	  <th>Title</th>
+	  <th>Lead</th>
+	  <th>News</th>
+	  <th>Updated</th>
+	  <th>Ready</th>
+	  <th>Tags</th>
+	  <th/>
+	</tr>
+      </thead>
+      <tbody id="table">
+	% foreach my $row (@$rows) {
+	<tr>
+	  <td><a href="<%= url_for('admin_edit', id => $row->{"id"}) %>"><%= $row->{"id"} %></a></td>
+	  <td><%= $row->{"title"} %></td>
+	  <td><%= $row->{"lead"} %></td>
+	  <td><%= $row->{"body"} %></td>
+	  <td><%= $row->{"updated"} %></td>
+	  <td><input type="checkbox" onclick="return false;" name="is_ready<%= $row->{"is_ready"} %>" <%= $row->{"is_ready"} ? "checked" : "" %>/></td>
+	  % if ($row->{"tags"}) {
+	  <td>
+	    % my $tags_array = $row->{"tags"};
+	    <%= join(', ', @$tags_array) %>
+	  </td>
+	  % }
+	  <td><input type="submit" value="Delete" onclick="execute('DELETE', '<%= url_for('admin_delete', id => $row->{"id"}) %>')"/></td>
+	</tr>
+	% } 
+      </tbody>
+    </table>
+    <a href="<%= url_for('news_index') %>">Index</a>
+    <a href="<%= url_for('auth_logout') %>">Logout</a>
+  </body>
+</html>
+ 

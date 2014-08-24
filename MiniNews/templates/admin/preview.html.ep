@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head><title>News: "<%= $rec->{"title"} %>"</title></head>
+  <body>
+    % my $is_new = $rec->{"id"} == "" || $rec->{"id"} == -1;
+    <form method="POST" action="<%= $is_new ? url_for('admin_create') : url_for('admin_update') %>">
+      <div><h1><%= $rec->{"title"} %></h1></div>
+      <input type="hidden" name="title" value="<%= $rec->{"title"} %>"/>
+      <div><h2><%= $rec->{"lead"} %></h2></div>
+      <input type="hidden" name="lead" value="<%= $rec->{"lead"} %>"/>
+      <div><%= $rec->{"updated"} %></div>
+      <input type="hidden" name="updated" value="<%= $rec->{"updated"} %>"/>
+      </br>
+      <div><%= $rec->{"body"} %></div>
+      <input type="hidden" name="body" value="<%= $rec->{"body"} %>"/>
+      </br>
+      <div>
+	% my $tags_array = $rec->{"tags"};
+	% my $tags = $tags_array ? join(", ", $tags_array) : "";
+	<%= $tags %>
+      </div>
+      <input type="hidden" name="tags" value="<%= $tags %>"/>
+      </br>
+      <input type="hidden" name="is_ready" value="<%= $rec->{"is_ready"} %>"/>
+      <input type="submit" value="Save"/>
+    </form>
+    <form action="javascript:history.back(-1)">
+      <input type="submit" value="Back to edit"/>
+    </form>
+    <form action="<%= url_for('admin_index') %>">
+      <input type="submit" value="Cancel"/>
+    </form>
+  </body>
+</html> 
